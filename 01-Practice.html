@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="https://cdn.pixabay.com/photo/2022/07/31/20/37/fries-7356824_640.png">
+  <title>Saffron & Spice — Fine Dining</title>
+  <style>
+    /* styles.css */
+
+/* CSS Variables */
+:root{
+  --bg: #fffaf6;
+  --accent: #c74b16;      /* deep saffron */
+  --accent-dark: #a63d12;
+  --muted: #6b6b6b;
+  --card: #ffffff;
+  --glass: rgba(255,255,255,0.7);
+  --radius: 16px;
+  --max-width: 1100px;
+  --shadow: 0 8px 24px rgba(13,13,13,0.08);
+  --gap: 1.2rem;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Reset-ish */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body{
+  margin:0;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: #222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Container */
+.container{
+  width: 92%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.header-inner{
+  display:flex;
+  gap:var(--gap);
+  align-items:center;
+  padding: 12px 0;
+}
+.brand{
+  display:flex;
+  gap:0.8rem;
+  align-items:center;
+}
+.logo{
+  width:48px; height:48px; object-fit:cover; border-radius:10px;
+  box-shadow: var(--shadow);
+}
+.brand h1{
+  margin:0;
+  font-size:1.05rem;
+  letter-spacing:0.4px;
+}
+
+/* nav */
+.main-nav{ margin-left: auto; }
+.main-nav ul{
+  display:flex;
+  gap:1rem;
+  list-style:none;
+  padding:0;
+  margin:0;
+  align-items:center;
+}
+.main-nav a{
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:600;
+  padding:8px 10px;
+  border-radius:10px;
+}
+.main-nav a:hover, .main-nav a:focus{
+  color:var(--accent-dark);
+  background: rgba(199,75,22,0.06);
+}
+
+.cta { margin-left: 12px; }
+.btn {
+  display:inline-block;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius: 12px;
+  font-weight:600;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.btn-primary{
+  background: var(--accent);
+  color:#fff;
+  border: none;
+  box-shadow: 0 8px 18px rgba(199,75,22,0.12);
+}
+.btn-outline{
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(199,75,22,0.12);
+}
+
+/* nav toggle for mobile */
+.nav-toggle{
+  display:none;
+  background:transparent;
+  border:0;
+  margin-left:12px;
+}
+.nav-toggle span{
+  display:block;
+  width:22px;height:2px;background:#333;margin:4px 0;border-radius:2px;
+}
+
+/* Hero */
+.hero{
+  position:relative;
+  padding: 48px 0;
+  overflow:hidden;
+}
+.hero-overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(120deg, rgba(255,246,240,0.6), rgba(255,245,240,0.4));
+  pointer-events:none;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2rem;
+  align-items:center;
+}
+.hero-text h2{
+  font-size:2.1rem;
+  margin:0 0 8px 0;
+  color: #2b2b2b;
+}
+.hero-text p{ margin:0 0 16px 0; color:var(--muted); }
+
+.hero-image img{
+  width:100%;
+  border-radius:18px;
+  box-shadow: var(--shadow);
+  display:block;
+}
+
+/* Sections */
+.section{ padding:48px 0; }
+.section.alt{ background: linear-gradient(180deg, #fffaf6, #fff7f1); }
+
+/* Titles */
+.section-title{ font-size:1.4rem; margin:0 0 8px 0; }
+.lead{ color:var(--muted); margin-bottom:18px; }
+
+/* Menu grid */
+.menu-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap:1.2rem;
+}
+.menu-card{
+  background: var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  display:flex;
+  flex-direction:column;
+}
+.menu-card img{ width:100%; height:160px; object-fit:cover; }
+.menu-body{ padding:14px; display:flex; flex-direction:column; gap:8px; }
+.menu-body h4{ margin:0; }
+.price{ color:var(--accent); font-weight:700; }
+
+/* small button */
+.small-btn{
+  align-self:flex-start;
+  margin-top:auto;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.06);
+}
+
+/* About grid */
+.about-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:1.5rem;
+  align-items:center;
+}
+.about-media img{ width:100%; border-radius:12px; box-shadow:var(--shadow); }
+.features{ margin:12px 0 0 0; padding-left:20px; color:var(--muted); }
+
+/* Reservation form */
+.reserve-form{
+  background: var(--glass);
+  padding:18px;
+  border-radius:12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  max-width: 900px;
+}
+.form-row{ display:flex; gap:12px; margin-bottom:12px; }
+label{ display:block; flex:1; font-size:0.95rem; color:var(--muted); }
+input, textarea, select{
+  width:100%;
+  padding:10px 12px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.08);
+  background:#fff;
+  font-family:inherit;
+}
+.form-actions{ display:flex; gap:12px; margin-top:12px; align-items:center; }
+
+/* Footer */
+.site-footer{ background:#fff; padding:28px 0 8px 0; border-top: 1px solid rgba(0,0,0,0.04); }
+.footer-grid{ display:flex; gap:2rem; flex-wrap:wrap; align-items:flex-start; }
+.footer-grid h4{ margin:0 0 8px 0; }
+.socials a{ text-decoration:none; color:var(--muted); }
+
+/* Copyright */
+.copyright{ padding:8px 0; color:var(--muted); font-size:0.9rem; border-top: 1px solid rgba(0,0,0,0.03); margin-top:18px; }
+
+/* Responsive */
+@media (max-width: 980px){
+  .hero-inner{ grid-template-columns: 1fr; }
+  .about-grid{ grid-template-columns: 1fr; }
+  .header-inner{ gap:10px; }
+  .main-nav{ display:none; }
+  .nav-toggle{ display:block; margin-left:auto; }
+
+  .main-nav.open{ display:block; position:absolute; top:70px; right:20px; background:#fff; padding:12px;border-radius:8px; box-shadow:var(--shadow); }
+  .main-nav ul{ flex-direction:column; }
+}
+
+/* small screens */
+@media (max-width:480px){
+  .hero-text h2{ font-size:1.45rem; }
+  .menu-card img{ height:140px; }
+  .form-row{ flex-direction:column; }
+}
+
+  </style>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="01-Practice.css">
+
+  <!-- favicon (optional) -->
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3f2b9c9c7bf7fcd6b6a9b2b3f7b2d1e6" alt="logo" class="logo">
+        <h1>Saffron & Spice</h1>
+      </div>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#reserve">Reserve</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="cta">
+        <a href="#reserve" class="btn btn-primary">Book Table</a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h2>Authentic Flavours. Modern Touch.</h2>
+        <p>Fresh ingredients, handcrafted dishes, unforgettable evenings. Join us for a culinary journey.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn">View Menu</a>
+          <a href="#reserve" class="btn btn-outline">Reserve Now</a>
+        </div>
+      </div>
+
+      <div class="hero-image" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f6abd6ee5b8d6d7b48d3b7fb4e7db3d" alt="Delicious food on table">
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="section">
+    <div class="container">
+      <h3 class="section-title">Our Bestsellers</h3>
+      <p class="lead">Handpicked dishes that our guests love.</p>
+
+      <div class="menu-grid">
+        <article class="menu-card">
+          <img src="https://cdn.pixabay.com/photo/2024/08/14/18/10/grilled-8969337_640.jpg" alt="Dish 1">
+          <div class="menu-body">
+            <h4>Grilled Saffron Chicken</h4>
+            <p class="price">₨ 1,650</p>
+            <p>Marinated chicken, saffron glaze, charred vegetables & herb oil.</p>
+            <a class="small-btn" href="#reserve">Order / Book</a>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <img src="https://cdn.pixabay.com/photo/2020/03/13/20/16/paneer-tikka-4929034_1280.jpg" alt="Dish 2">
+          <div class="menu-body">
+            <h4>Paneer Tikka Platter</h4>
+            <p class="price">₨ 1,200</p>
+            <p>Smoky paneer, bell peppers, served with mint chutney.</p>
+            <a class="small-btn" href="#reserve">Order / Book</a>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <img src="https://cdn.pixabay.com/photo/2024/02/10/00/53/biryani-8563961_640.jpg" alt="Dish 3">
+          <div class="menu-body">
+            <h4>Signature Biryani</h4>
+            <p class="price">₨ 1,450</p>
+            <p>Long grain rice, slow-cooked spices, tender meat & caramelized onions.</p>
+            <a class="small-btn" href="#reserve">Order / Book</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section alt">
+    <div class="container about-grid">
+      <div class="about-media">
+        <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2b3c4d5e6f7g8h9i0j" alt="restaurant interior">
+      </div>
+      <div class="about-text">
+        <h3>About Saffron & Spice</h3>
+        <p>We blend traditional flavors with modern techniques. Our chefs source seasonal produce and cook with love — creating dishes that bring people together.</p>
+        <ul class="features">
+          <li>Fresh & Local Ingredients</li>
+          <li>Cozy Ambience</li>
+          <li>Private Dining & Events</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation -->
+  <section id="reserve" class="section">
+    <div class="container">
+      <h3 class="section-title">Reserve a Table</h3>
+      <p class="lead">Quick reservation — we’ll confirm by phone.</p>
+
+      <form class="reserve-form" id="reserveForm" action="#" onsubmit="alert('Reservation simulated — customize action URL'); return false;">
+        <div class="form-row">
+          <label>
+            Name
+            <input type="text" name="name" required placeholder="Your name">
+          </label>
+
+          <label>
+            Phone
+            <input type="tel" name="phone" required placeholder="+92 3xx xxx xxxx">
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            Date & Time
+            <input type="datetime-local" name="datetime" required>
+          </label>
+
+          <label>
+            Guests
+            <select name="guests" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5+</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Special requests
+          <textarea name="notes" rows="3" placeholder="Allergies, celebrations..."></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Request Reservation</button>
+          <a href="tel:+923001234567" class="btn btn-outline">Call Now</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Saffron & Spice</h4>
+        <p>123 Food Street, Lahore<br>Open: Tue–Sun 12:00–23:00</p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p>Phone: <a href="tel:+923700496544">+92 370 0496544</a><br>
+        Email: <a href="mailto:info@saffronspice.example">info@saffronspice.example</a></p>
+      </div>
+
+    <div class="social-links">
+        <a href="https://www.instagram.com/bashir_bhaii_07?igsh=MTUyd2hqMm5qZGFwcw==" target="_blank" class="instagram">Instagram</a>
+        <a href="https://www.facebook.com/share/19Znyq6fE2/" target="_blank" class="facebook">Facebook</a>
+    </div>
+    </div>
+
+    <div class="copyright">
+      <div class="container">
+        &copy; <span id="year"></span> Saffron & Spice — All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // small JS for nav toggle and year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.main-nav');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (href.length > 1) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
