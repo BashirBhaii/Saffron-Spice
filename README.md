@@ -7,6 +7,7 @@
   <title>Saffron & Spice — Fine Dining</title>
   <style>
     /* styles.css */
+
 /* CSS Variables */
 :root{
   --bg: #fffaf6;
@@ -435,13 +436,10 @@ input, textarea, select{
         Email: <a href="mailto:info@saffronspice.example">info@saffronspice.example</a></p>
       </div>
 
-      <div>
-        <h4>Follow</h4>
-        <p class="socials">
-          <a href="#" aria-label="Instagram">Instagram</a> •
-          <a href="#" aria-label="Facebook">Facebook</a>
-        </p>
-      </div>
+    <div class="social-links">
+        <a href="https://www.instagram.com/bashir_bhaii_07?igsh=MTUyd2hqMm5qZGFwcw==" target="_blank" class="instagram">Instagram</a>
+        <a href="https://www.facebook.com/share/19Znyq6fE2/" target="_blank" class="facebook">Facebook</a>
+    </div>
     </div>
 
     <div class="copyright">
