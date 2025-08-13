@@ -7,7 +7,6 @@
   <title>Saffron & Spice — Fine Dining</title>
   <style>
     /* styles.css */
-
 /* CSS Variables */
 :root{
   --bg: #fffaf6;
