@@ -431,7 +431,7 @@ input, textarea, select{
 
       <div>
         <h4>Contact</h4>
-        <p>Phone: <a href="tel:+923001234567">+92 300 1234567</a><br>
+        <p>Phone: <a href="tel:+923700496544">+92 370 0496544</a><br>
         Email: <a href="mailto:info@saffronspice.example">info@saffronspice.example</a></p>
       </div>
 
